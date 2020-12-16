@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { routeStateTrigger } from "./shared/assets/animations";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
+  animations: [routeStateTrigger],
 })
 export class AppComponent {
-  title = 'angular-playground-architecture';
+  /** Preparing the route, so it properly animates. */
+  prepareRoute(outlet: RouterOutlet) {
+    return (
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
+    );
+  }
 }
